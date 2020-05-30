@@ -467,9 +467,9 @@
                     'from { width:' + Trex.config.WIDTH + 'px }' +
                     'to { width: ' + this.dimensions.WIDTH + 'px }' +
                     '}';
-                
-                // create a style sheet to put the keyframe rule in 
-                // and then place the style sheet in the html head    
+
+                // create a style sheet to put the keyframe rule in
+                // and then place the style sheet in the html head
                 var sheet = document.createElement('style');
                 sheet.innerHTML = keyframes;
                 document.head.appendChild(sheet);
@@ -1613,8 +1613,8 @@
         init: function () {
             this.groundYPos = Runner.defaultDimensions.HEIGHT - this.config.HEIGHT -
                 Runner.config.BOTTOM_PAD;
-            this.yPos = this.groundYPos;
-            this.minJumpHeight = this.groundYPos - this.config.MIN_JUMP_HEIGHT;
+            this.yPos = (this.groundYPos + 50);
+            this.minJumpHeight = (this.groundYPos + 50) - this.config.MIN_JUMP_HEIGHT;
 
             this.draw(0, 0);
             this.update(0, Trex.status.WAITING);
@@ -1670,7 +1670,7 @@
             }
 
             // Speed drop becomes duck if the down key is still being pressed.
-            if (this.speedDrop && this.yPos == this.groundYPos) {
+            if (this.speedDrop && this.yPos == (this.groundYPos + 50)) {
                 this.speedDrop = false;
                 this.setDuck(true);
             }
@@ -1799,7 +1799,7 @@
             }
 
             // Back down at ground level. Jump completed.
-            if (this.yPos > this.groundYPos) {
+            if (this.yPos > (this.groundYPos + 50)) {
                 this.reset();
                 this.jumpCount++;
             }
@@ -1832,7 +1832,7 @@
          * Reset the t-rex to running at start of game.
          */
         reset: function () {
-            this.yPos = this.groundYPos;
+            this.yPos = (this.groundYPos + 50);
             this.jumpVelocity = 0;
             this.jumping = false;
             this.ducking = false;
