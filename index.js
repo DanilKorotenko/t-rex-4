@@ -103,7 +103,7 @@
      * @enum {number}
      */
     Runner.config = {
-        ACCELERATION: 0.001,
+        ACCELERATION: 0.01,
         BG_CLOUD_SPEED: 0.2,
         BOTTOM_PAD: 10,
         CLEAR_TIME: 3000,
@@ -118,11 +118,11 @@
         MAX_CLOUDS: 6,
         MAX_OBSTACLE_LENGTH: 3,
         MAX_OBSTACLE_DUPLICATION: 2,
-        MAX_SPEED: 13,
+        MAX_SPEED: 850,
         MIN_JUMP_HEIGHT: 35,
         MOBILE_SPEED_COEFFICIENT: 1.2,
         RESOURCE_TEMPLATE_ID: 'audio-resources',
-        SPEED: 6,
+        SPEED: 1,
         SPEED_DROP_COEFFICIENT: 3
     };
 
@@ -467,9 +467,9 @@
                     'from { width:' + Trex.config.WIDTH + 'px }' +
                     'to { width: ' + this.dimensions.WIDTH + 'px }' +
                     '}';
-                
-                // create a style sheet to put the keyframe rule in 
-                // and then place the style sheet in the html head    
+
+                // create a style sheet to put the keyframe rule in
+                // and then place the style sheet in the html head
                 var sheet = document.createElement('style');
                 sheet.innerHTML = keyframes;
                 document.head.appendChild(sheet);
@@ -1101,7 +1101,9 @@
      *    collision boxes.
      * @return {Array<CollisionBox>}
      */
-    function checkForCollision(obstacle, tRex, opt_canvasCtx) {
+    function checkForCollision(obstacle, tRex, opt_canvasCtx)
+    {
+//     	return false;
         var obstacleBoxXPos = Runner.defaultDimensions.WIDTH + obstacle.xPos;
 
         // Adjustments are made to the bounding box as there is a 1 pixel white
